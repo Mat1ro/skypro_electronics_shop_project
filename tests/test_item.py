@@ -1,5 +1,6 @@
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 
 class TestItem:
@@ -52,3 +53,11 @@ class TestItem:
         """
         Item.instantiate_from_csv("./src/items.csv")
         assert len(Item.all) == 8
+
+    def test_add_items_and_phones(self):
+        item = Item("Товар 4", 40.0, 4)
+        phone = Phone("Товар 4", 40.0, 4, 2)
+        item2 = Item("Товар 4", 40.0, 2)
+        phone2 = Phone("Товар 4", 40.0, 7, 2)
+        assert item + item2 == 6
+        assert phone + phone2 == 11

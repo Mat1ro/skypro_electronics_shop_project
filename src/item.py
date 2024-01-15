@@ -33,10 +33,14 @@ class Item:
         Item.all.append(self)
 
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self._name}', {self.price}, {self.quantity})"
 
     def __str__(self):
         return self._name
+
+    def __add__(self, other):
+        if issubclass(other.__class__, self.__class__):
+            return other.quantity + self.quantity
 
     @classmethod
     def instantiate_from_csv(cls, path):
